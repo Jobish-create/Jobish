@@ -1,3 +1,27 @@
+// Setează data estimată pentru lansare
+var launchDate = new Date("Mar 1, 2025 00:00:00").getTime();
+
+// Actualizează contorul de timp la fiecare secundă
+var x = setInterval(function() {
+    var now = new Date().getTime();
+    var distance = launchDate - now;
+
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("countdown").innerHTML = days + "z " + hours + "h "
+    + minutes + "m " + seconds + "s ";
+
+    // Dacă s-a ajuns la data de lansare, oprește contorul
+    if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("countdown").innerHTML = "Suntem live! 🎉";
+    }
+}, 1000);
+
+
 * {
     margin: 0;
     padding: 0;
